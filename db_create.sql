@@ -1,0 +1,2 @@
+-- Active: 1769614943853@@127.0.0.1@3306@flights
+CREATE DATABASE Flights
