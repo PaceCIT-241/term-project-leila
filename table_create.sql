@@ -38,15 +38,15 @@ MODIFY city_id INT AUTO_INCREMENT;
 CREATE TABLE temp_flight_data (
     origin_airport CHAR(3),
     destination_airport CHAR(3),
-    origin_city VARCHAR(100),
-    origin_state_code CHAR(2),
-    destination_city VARCHAR(100),
-    destination_state_code CHAR(2),
+    origin_city_state VARCHAR(100),
+    destination_city_state  VARCHAR(100),
     passengers INT,
     seats INT,
     flight_count INT,
-    distance INT,
+    distance DECIMAL(10,1),
     fly_date INT, -- YYYYM format + dataset description said INT --
     origin_population INT,
     destination_population INT
 );
+
+DROP TABLE temp_flight_data; -- needed to fix columns --
