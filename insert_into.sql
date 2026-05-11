@@ -92,7 +92,7 @@ FROM temp_flight_data;
 
 SELECT * FROM Route LIMIT 20;
 
--- flight import crashing -- 
+-- flight import crashing need an alteratives to auto incremate -- 
 INSERT INTO Flight(route_id, fly_date, passengers, seats, flight_count)
 SELECT 
     Route.route_id,
@@ -104,7 +104,8 @@ FROM temp_flight_data
 JOIN Route 
 ON temp_flight_data.origin_airport = Route.origin_airport
 AND temp_flight_data.destination_airport = Route.destination_airport
-LIMIT 5;
-SHOW CREATE TABLE Flight;
+LIMIT 10;
 
 SELECT COUNT(*) FROM Flight;
+
+TRUNCATE TABLE Flight;
