@@ -28,17 +28,19 @@ CREATE TABLE Route (
 ALTER TABLE Route MODIFY route_id INT AUTO_INCREMENT;
 
 CREATE TABLE Flight (
-    flight_id INT PRIMARY KEY,
+    flight_id INT NOT NULL AUTO_INCREMENT,
     route_id INT,
-    fly_date INT, -- YYYYM format + dataset description said INT --
-    passangers INT,
+    fly_date INT,
+    passengers INT,
     seats INT,
     flight_count INT,
-    FOREIGN KEY (route_id) REFERENCES Route(route_id) 
-);
+    PRIMARY KEY (flight_id),
+    FOREIGN KEY (route_id) REFERENCES Route(route_id)
+); --added auto increment -- 
 
 ALTER TABLE Flight CHANGE passangers passengers INT; -- typo fix -- 
 ALTER TABLE Flight MODIFY flight_id INT AUTO_INCREMENT;
+DROP TABLE Flight; -- import crashed -- 
 
 CREATE TABLE temp_flight_data (
     origin_airport CHAR(3),
