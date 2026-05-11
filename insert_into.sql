@@ -93,6 +93,11 @@ FROM temp_flight_data;
 SELECT * FROM Route LIMIT 20;
 
 -- flight import crashing need an alteratives to auto incremate -- 
+CREATE INDEX idx_route_airports
+ON Route(origin_airport, destination_airport);
+CREATE INDEX idx_temp_airports
+ON temp_flight_data(origin_airport, destination_airport);
+
 INSERT INTO Flight(route_id, fly_date, passengers, seats, flight_count)
 SELECT 
     Route.route_id,
@@ -104,8 +109,10 @@ FROM temp_flight_data
 JOIN Route 
 ON temp_flight_data.origin_airport = Route.origin_airport
 AND temp_flight_data.destination_airport = Route.destination_airport
-LIMIT 10;
+LIMIT 100000 OFFSET 800000;
 
 SELECT COUNT(*) FROM Flight;
 
-TRUNCATE TABLE Flight;
+SELECT * FROM Flight;
+
+SELECT COUNT(*) FROM temp_flight_data;
