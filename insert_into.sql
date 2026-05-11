@@ -82,3 +82,25 @@ SELECT * FROM airport_city_map LIMIT 10;
 
 SELECT * FROM airport;
 
+-- route import -- 
+INSERT INTO Route (origin_airport, destination_airport, distance)
+SELECT DISTINCT
+    origin_airport,
+    destination_airport,
+    distance
+FROM temp_flight_data; 
+
+SELECT * FROM Route LIMIT 20;
+
+-- flight import crashing -- 
+INSERT INTO Flight(route_id, fly_date, passengers, seats, flight_count)
+SELECT 
+    Route.route_id,
+    temp_flight_data.fly_date,
+    temp_flight_data.passengers,
+    temp_flight_data.seats,
+    temp_flight_data.flight_count
+FROM temp_flight_data
+JOIN Route 
+ON temp_flight_data.origin_airport = Route.origin_airport
+AND temp_flight_data.destination_airport = Route.destination_airport;

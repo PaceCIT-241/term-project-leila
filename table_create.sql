@@ -7,6 +7,9 @@ CREATE TABLE City (
     population int 
 );
 
+ALTER TABLE city
+MODIFY city_id INT AUTO_INCREMENT;
+
 CREATE TABLE Airport (
     airport_code CHAR(3) PRIMARY KEY,
     city_id INT,
@@ -22,6 +25,8 @@ CREATE TABLE Route (
     FOREIGN KEY (destination_airport) REFERENCES Airport(airport_code)
 );
 
+ALTER TABLE Route MODIFY route_id INT AUTO_INCREMENT;
+
 CREATE TABLE Flight (
     flight_id INT PRIMARY KEY,
     route_id INT,
@@ -32,8 +37,8 @@ CREATE TABLE Flight (
     FOREIGN KEY (route_id) REFERENCES Route(route_id) 
 );
 
-ALTER TABLE city
-MODIFY city_id INT AUTO_INCREMENT;
+ALTER TABLE Flight CHANGE passangers passengers INT; -- typo fix -- 
+ALTER TABLE Flight MODIFY flight_id INT AUTO_INCREMENT;
 
 CREATE TABLE temp_flight_data (
     origin_airport CHAR(3),
