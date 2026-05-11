@@ -103,6 +103,8 @@ SELECT
 FROM temp_flight_data
 JOIN Route 
 ON temp_flight_data.origin_airport = Route.origin_airport
-AND temp_flight_data.destination_airport = Route.destination_airport;
-
+AND temp_flight_data.destination_airport = Route.destination_airport
+LIMIT 5;
 SHOW CREATE TABLE Flight;
+
+SELECT COUNT(*) FROM Flight;
